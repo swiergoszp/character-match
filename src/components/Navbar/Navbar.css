@@ -1,0 +1,11 @@
+.navbar {
+  padding: 25px;
+  background-color: #2A77AE;
+  color: #FFF;
+  box-shadow: 0 10px 50px #999;
+}
+
+.title, .title:hover {
+  color: #FFF;
+  text-decoration: none;
+}
