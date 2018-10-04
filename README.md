@@ -1,4 +1,4 @@
-# Character Memory Click
+# Bootcamp Simulator Memory Click
 
-Try to click on all the characters without choosing the same one twice!
+Try to click on all the logos without choosing the same one twice!
 
