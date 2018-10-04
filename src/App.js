@@ -1,40 +1,69 @@
 import React, { Component } from "react";
-import GameCard from "./components/GameCard";
-import Navbar from "./components/Navbar";
 import Wrapper from "./components/Wrapper";
+import Navbar from "./components/Navbar";
 import Jumbotron from "./components/Jumbotron";
 import GameWrapper from "./components/GameWrapper";
+import GameCard from "./components/GameCard";
+import Footer from "./components/Footer";
 import icons from "./icons.json";
-import "./App.css";
 
 class App extends Component {
   // state as icons.json
   state = {
-    icons
+    icons,
+    score: 0,
+    highScore: 0,
+    message: "Click a Logo to Begin!"
   };
 
-  removeFriend = id => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    const friends = this.state.friends.filter(friend => friend.id !== id);
-    // Set this.state.friends equal to the new friends array
-    this.setState({ friends });
-  };
+  gameOver = () => {
+    if (this.state.score > this.state.highScore) {
+      this.setState({highScore: this.state.score}, function() {
+        console.log(this.state.highScore);
+      });
+    }
+    this.state.icons.forEach(card => {
+      card.count = 0;
+    });
+    alert(`Game Over :( \nscore: ${ this.state.score }`);
+    this.setState({score: 0});
+    return true;
+  }
+
+  clickCount = id => {
+    this.state.icons.find((icon, i) => {
+      if (icon.id === id) {
+        if(icons[i].count === 0){
+          icons[i].count = icons[i].count + 1;
+          this.setState({score : this.state.score + 1}, function(){
+            console.log(this.state.score);
+          });
+          this.state.icons.sort(() => Math.random() - 0.5)
+          return true; 
+        } else {
+          return this.gameOver();
+        }
+      }
+      return console.log("hi");
+    });
+  }
 
   render() {
     return (
       <Wrapper>
-        <Navbar>Memory Click</Navbar>
-        <Jumbotron />
+        <Navbar message={ this.state.message } score={ this.state.score } highScore={ this.state.highScore }>Bootcamp Experience</Navbar>
+        <Jumbotron>The Mini Coding Bootcamp Experience</Jumbotron>
         <GameWrapper>
           {this.state.icons.map(icons => (
             <GameCard
-              removeFriend={this.removeFriend}
-              id={icons.id}
-              key={icons.id}
-              image={icons.image}
+              id={ icons.id }
+              key={ icons.id }
+              image={ icons.image }
+              clickCount={ this.clickCount }
             />
           ))}
         </GameWrapper>
+        <Footer />
       </Wrapper>
     );
   }

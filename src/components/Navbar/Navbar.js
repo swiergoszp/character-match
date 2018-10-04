@@ -2,15 +2,17 @@ import React from "react";
 import "./Navbar.css";
 
 const Navbar = props => (
-  <div className="row navbar fixed-top d-flex justify-content-around">
+  <div className="navbar fixed-top justify-content-around text-center">
 
-      <div>
-        <a href="/" className="title">{props.children}</a>
+      <div className="col-md-4">
+        <a href="/" className="title">{ props.children }</a>
       </div>
 
-      <div className="guessResult">Correct</div>
+      <div className="guessResult col-md-4">
+        { props.message }
+      </div>
 
-      <div className="score">Score</div>
+      <div className="score col-md-4">Score: { props.score } | High Score: { props.highScore }</div>
 
   </div>
 );
