@@ -52,7 +52,7 @@ class App extends Component {
     return (
       <Wrapper>
         <Navbar message={ this.state.message } score={ this.state.score } highScore={ this.state.highScore }>Bootcamp Experience</Navbar>
-        <Jumbotron>The Mini Coding Bootcamp Experience</Jumbotron>
+        <Jumbotron>The Coding Bootcamp Simulator</Jumbotron>
         <GameWrapper>
           {this.state.icons.map(icons => (
             <GameCard
